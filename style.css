@@ -20,15 +20,39 @@
 
 :root {
 	--main-color: rgb(165, 42, 42);
+	--second-color: rgb(255, 191, 0);
+	--main-color-dark:rgb(165, 42, 42);
 	--text-color: rgb(32, 32, 32);
 	--bg-color: white;
 	--bg-color-cards: white;
-	--second-color: rgb(255, 191, 0);
 	--big-font: 5rem;
 	--h2-font: 2.2rem;
 	--p-font: 1.2rem;
 	--image-url: url('images/WBG.png');
 }
+
+
+/*----- Scrollbar -----*/
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 1rem;
+	background-color: var(--second-color);
+	background-image: -webkit-linear-gradient(-45deg,  rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%,  rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
+}
+
+
 
 body {
 	background-image: var(--image-url);
@@ -45,57 +69,11 @@ body {
 body.dark {
 	--image-url: url('images/DBG.png');
 	--text-color: rgb(255, 255, 255);
-	--bg-color: rgb(18, 18, 18);
+	--bg-color: rgb(28, 28, 28);
 	--bg-color-cards: rgb(30, 30, 30);
+	--main-color-dark:rgb(255, 191, 0);
 }
 
-
-/*------------- RECLAMA ------------- */
-.reclama {
-	background-color: var(--second-color);
-	display: flex;
-	align-items: center;
-	justify-content: end;
-}
-
-.reclama p {
-	margin-top: 15px;
-	color: var(--bg-color);
-	padding: 3px;
-	margin: 0 auto;
-	animation: ticker 20s linear infinite;
-}
-
-.close-reclama {
-	position: absolute;
-	background-color: var(--second-color);
-	padding-left: 15px;
-	padding-right: 15px;
-	border: none;
-	font-size: 20px;
-	cursor: pointer;
-	z-index: 1;
-	/*pune in fata textului*/
-}
-@media(max-width: 480px){
-	.close-reclama {
-		padding-left: 15px;
-		padding-right: 15px;
-		height: 43px;
-		font-size: 25px;
-	}
-}
-
-
-@keyframes ticker {
-	0% {
-		transform: translateX(-100vw);
-	}
-
-	100% {
-		transform: translateX(100vw);
-	}
-}
 
 
 @media(max-width: 1220px) {
@@ -123,6 +101,22 @@ body.dark {
 }
 
 
+
+/*---------------------TOAST------------------------- */
+.toast{
+	position: fixed;
+	bottom: .5rem;
+	left: .5rem;
+}
+
+
+@media(max-width:480px) {
+	.toast{
+		display: none;
+	}
+	
+}
+
 /*-------------------- NAV-BAR -----------------------*/
 
 .navbar a {
@@ -134,7 +128,8 @@ body.dark {
 }
 
 .navbar {
-	background-color: var(--bg-color);
+	background-color: var(--bg-color-cards);
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
 	box-shadow: 0 5px 50px 5px var(--text-color);
 }
 
@@ -224,7 +219,7 @@ li .dropdown-item:hover {
 .center-text strong {
 	font-size: var(--p-font);
 	font-weight: 500;
-	color: var(--main-color);
+	color: var(--main-color-dark);
 }
 
 .center-text h2 {
@@ -244,7 +239,7 @@ li .dropdown-item:hover {
 }
 
 .home-text {
-	grid-column: 1 / 2;
+	grid-column: 1 / 2;     
 }
 
 .home-text h1 {
@@ -300,7 +295,7 @@ li .dropdown-item:hover {
 
 /*-----------------MEDIA QUERRY HOME-------------------*/
 
-@media only screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
 
 	.home-text {
 		order: 2;
@@ -394,7 +389,7 @@ li .dropdown-item:hover {
 	margin: 15px 0;
 	font-size: 30px;
 	font-weight: 900;
-	color: var(--text-color);
+	color: var(--main-color-dark);
 }
 
 
@@ -420,8 +415,8 @@ li .dropdown-item:hover {
 
 
 /*---------------------CARUSEL PROMOTII-----------------------------*/
-.carousel {
-	width: 90%;
+#hero-carousel {
+	width: 80%;
 	margin: auto;
 	margin-bottom: 50px;
 
@@ -442,14 +437,14 @@ li .dropdown-item:hover {
 	background-color: rgba(0, 0, 0, 0);
 }
 
-.carousel-inner {
+#carousel-inner {
 	border-radius: 15px;
 	border: 5px solid var(--second-color);
 	box-shadow: 10px 9px 0 0 rgb(136, 30, 30);
 }
 
 @media(max-width: 480px) {
-	.carousel {
+	#hero-carousel {
 		width: 80%;
 	}
 
@@ -514,14 +509,14 @@ li .dropdown-item:hover {
 }
 
 .row h6 {
-	font-size: 15px;
+	font-size: 20px;
 	font-weight: 800;
 	color: var(--main-color);
 	margin: 10px 0;
 }
 
 .row h5 {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 900;
 	color: var(--text-color);
 }
@@ -537,26 +532,20 @@ li .dropdown-item:hover {
 	transform: translateY(-8px);
 	transition: .2s linear;
 	box-shadow: 12px 18px 0 0 rgb(136, 30, 30);
+	
 }
 
-.row:hover h6
 
-/*schimba textul cu pretul ca sa se vada*/
-	{
+
+.row:hover h5, .row:hover h6
+{
 	color: var(--second-color);
-}
-
-.row:hover h5
-
-/*schimba textul cu numele ca sa se vada*/
-	{
-	color: var(--bg-color);
 }
 
 .row:hover img
 
 /*mareste pizza*/
-	{
+{
 	transform: scale(1.2) translateY(-25px);
 	transition: .2s linear;
 
@@ -630,7 +619,7 @@ li .dropdown-item:hover {
 	border: 10px solid var(--second-color);
 	border-radius: 5rem;
 	border: 10px solid var(--second-color);
-	box-shadow: 15px 10px 0 0 var(--main-color);
+	box-shadow: 10px 8px 0 0 var(--main-color);
 	margin-left: 100px;
 
 }
@@ -638,7 +627,7 @@ li .dropdown-item:hover {
 .despre-text strong {
 	font-size: var(--p-font);
 	font-weight: 500;
-	color: var(--main-color);
+	color: var(--main-color-dark);
 }
 
 .despre-text h2 {
@@ -682,6 +671,7 @@ li .dropdown-item:hover {
 
   .features-box p{
 	font-size: 16px;
+	line-height: 20px;
 	padding: 20px 0 20px  0;
 	text-align: center;
   }
@@ -708,6 +698,7 @@ li .dropdown-item:hover {
 
 	.despre-img img {
 		width: 270px;
+		border-radius: 2.5rem;
 		border: 5px solid var(--second-color);
 		margin: 0 auto;
 		box-shadow: 5px 4px 0 0 var(--main-color);
@@ -720,12 +711,6 @@ li .dropdown-item:hover {
 	.features {
 		grid-template-columns: repeat(auto-fit, minmax(min-content, 100%));
 	}
-	/*---------------------NEWSLETTER-----------------------------*/
-
-section.subscribe {
-	margin-top: 100px;
-	margin-bottom: 100px;
-}
 
 	.features-box img {
 		max-width: 60px;
@@ -741,7 +726,7 @@ section.subscribe {
 
 /*---------------------NEWSLETTER-----------------------------*/
 
-section.subscribe {
+.subscribe {
 	margin-top: 100px;
 	margin-bottom: 100px;
 }
@@ -762,7 +747,7 @@ section.subscribe {
 	overflow: hidden;
 	margin-bottom: 2rem;
 	border: 10px solid var(--second-color);
-	box-shadow: 10px 7px 0 0 rgb(136, 30, 30);
+	box-shadow: 10px 8px 0 0 rgb(136, 30, 30);
 
 }
 
@@ -872,8 +857,7 @@ a:link {
 }
 
 .contact-content {
-	margin-top: 50px;
-	padding-bottom: 50px;
+	margin-top: 5rem;
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
@@ -882,13 +866,13 @@ a:link {
 
 .contact-text {
 	text-align: center;
-	margin-bottom: 4rem;
+	margin-bottom: 1rem;
 
 }
 
 .contact-text h2 {
 	font-size: var(--h2-font);
-	color: var(--main-color);
+	color: var(--main-color-dark);
 	margin-bottom: 10px;
 
 }
@@ -898,7 +882,7 @@ a:link {
 	font-size: var(--p-font);
 	max-width: 950px;
 	line-height: 30px;
-	margin-bottom: 3rem;
+	margin-bottom: 1rem;
 }
 
 .social i {
@@ -906,7 +890,6 @@ a:link {
 	font-size: 40px;
 	color: var(--text-color);
 	margin: 0 30px;
-
 }
 
 
@@ -935,6 +918,7 @@ a:link {
 	color: var(--text-color);
 	font-size: 15px;
 	font-weight: 600;
+	margin-bottom: 2rem;
 }
 
 .info a:hover {
@@ -948,21 +932,14 @@ a:link {
 	vertical-align: middle;
 	margin-right: 12px;
 	font-size: 30px;
-	color: var(--main-color);
+	color: var(--main-color-dark	);
 
 }
 
 /*---------------------MEDIA QUERRY CONTACT---------------------------*/
 
 @media(max-width:480px) {
-	.contact-content {
-		margin-bottom: 5rem;
-	}
-
-	.contact-text {
-		margin: 10px;
-	}
-
+	
 	.info a {
 		padding-top: 15px;
 	}
@@ -1034,7 +1011,7 @@ a:link {
 	border-radius: 2rem;
 	background: var(--bg-color-cards);
 	border: 5px solid var(--second-color);
-	box-shadow: 8px 7px 0 0 rgb(136, 30, 30);
+	box-shadow: 10px 8px 0 0 rgb(136, 30, 30);
 	margin: 20px;
 
 }
@@ -1123,7 +1100,7 @@ a:link {
 /*-----------------------------CSS PENTRU PAGINA MENU!!!---------------------------*/
 
 mark.brown {
-	color: brown;
+	color: var(--main-color-dark);
 	background-color: transparent;
 }
 
@@ -1151,14 +1128,14 @@ mark.brown {
 	display: none;
 
 }
-
+/*
 .cards.active {
 	background: rgb(255, 255, 255, 0.3);
 	cursor: grabbing;
 	cursor: -webkit-grabbing;
 	transform: scale(1);
 }
-
+*/
 
 .cards .card {
 	position: relative;
@@ -1172,6 +1149,11 @@ mark.brown {
 	box-shadow: 7px 4px 0 0 var(--main-color);
 	overflow: visible;
 }
+
+.cards .card:first-child {
+	margin-left: 30px;
+}
+ 
 
 #tab2 .card {
 	min-height: 200px;
@@ -1274,12 +1256,32 @@ mark.brown {
 	transform: scale(1.2);
 }
 
+.buy-btn {
+	margin: 3px auto;
+	width: 100px;
+	background-color: var(--main-color);
+	border: 2px solid var(--second-color);
+	color: var(--bg-color);
+	border-radius: 2rem;
+}
+
+.buy-btn:hover {
+	background-color: var(--second-color);
+	color: var(--second-color);
+	transform: scale(1.1);
+	transition: .2s linear;
+	color: white;
+}
+
+
+.card-btns{
+ display: inline-block;
+ text-align: center;
+}
+
+
 /*-------------------MEDIA QUERRY CARDS-----------------------*/
 @media screen and (max-width: 480px) {
-
-  .card{
-	font-size: 20px;
-  }
 
   .cards{
 	height: 300px;
@@ -1313,25 +1315,13 @@ mark.brown {
   .cards .card {
 	height: 230px;
 	border-radius: 15px;
+	min-width: 280px;
+	
   }
   .card .dis {
 	display: none;
-}
+}	
 
-
-/*
-  .card .dis {
-	height: 100px;
-	width: 100px;
-	top: 0;
-	left: 0;
-}
-
-#tab3 .card .dis {
-	width: 120px;
-	
-}
-*/
 .card button{
 	padding: 5px;
 	font-size: 18px;
@@ -1339,9 +1329,7 @@ mark.brown {
 	width: 90px;
 }
 
-
 }
-
 
 
 /*---------------------TABS CARDURI---------------------------*/
@@ -1398,22 +1386,18 @@ mark.brown {
 
 .modal {
 	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
 	background: rgba(109, 109, 109, 0.5);
 	backdrop-filter: blur(3px);
 }
 
 .modal-content {
 	background-image: var(--image-url);
-	margin-top: 100px;
+	margin-top: 70px;
 	max-width: 1000px;
-	height: 500px;
+	height: auto;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 8px 24px;
+	padding: 50px;
 	border-radius: 4rem !important;
 	border: 10px solid var(--second-color) !important;
 	box-shadow: 13px 10px 0 0 var(--main-color);
@@ -1487,12 +1471,6 @@ mark.brown {
 		display: none;
 	}
 
-
-	section .btns {
-		display: none;
-
-	}
-
 	.modal {
 
 		padding: 10px;
@@ -1556,44 +1534,102 @@ mark.brown {
 }
 
 
-/*---------------COMANDA FORM-----------------*/
+
+/*----------------SHOPPING CART---------------*/
+
+.cart-item
+{
+	text-align: left;
+}
+
+#shopping-cart
+{
+	background:rgb(134, 34, 34);
+	margin: 10px;	
+	border-radius: 2rem;
+	border-left: 5px solid var(--second-color);	
+}
+
+#shopping-cart h4
+{
+	margin-top: 10px;
+}
+
+
+.quantity-btn
+{
+	margin: 5px;
+	border: 2px solid var(--second-color);
+	border-radius: 2rem;
+	width: 20px;
+	text-align: center;
+	color: var(--main-color);
+}
+
+.remove-btn{
+	font-size: 15px;
+	width: 100px;
+	color: var(--main-color);
+	border: 2px solid var(--second-color);
+	border-radius: 2rem;
+}
 
 
 .comanda-form {
-	margin: 40px;
-	text-align: right;
-	font-size: 1.2em;
+	height: auto;
+	width: 80%;
+	margin: 40px auto;
+	font-size: 1.2rem;
 	background-color: var(--main-color);
 	border: 10px solid var(--second-color);
 	border-radius: 4rem;
-	box-shadow: 15px 10px 0 0 rgb(134, 34, 34);
+	box-shadow: 10px 7px 0 0 rgb(134, 34, 34);
 	padding: 30px;
 	color: var(--second-color);
 	display: grid;
-	grid-template-columns: 1fr 5fr;
-	grid-gap: 15px;
+	grid-template-columns: 1fr 1fr;
+	text-align: center;
+}
 
+.rows-comanda{
+    background:rgb(134, 34, 34);
+	margin:10px;
+	border-radius: 2rem;
+	border-left: 5px solid var(--second-color);
+}
+
+.row-comanda {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+}
+.row-comanda {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
 }
 
 label {
+	text-align: center;
 	padding: 5px;
-	margin-top: 13px;
-	display: block;
-	margin-right: 10px;
-	margin-bottom: 15px;
-	grid-column: 1 / 2;
+	margin-top: 10px;
+
 }
 
 input[type=text],
 select,
 textarea {
 	padding: 5px;
-	margin-bottom: 15px;
 	border: 5px solid var(--second-color);
 	border-radius: 2rem;
-	width: 500px;
+	width: 70%;
 	text-align: center;
 
+}
+.observatii{
+	margin-bottom: 20px;
 }
 
 option {
@@ -1601,121 +1637,129 @@ option {
 	color: var(--main-color);
 }
 
-
-select#pizza option:hover {
-	background-color: var(--main-color) !important;
-	color: var(--second-color) !important;
-}
-
-input,
-select,
-textarea {
-	grid-column: 2 / 3;
-}
-
 button.trimite {
-
+	margin: 0 auto;
+	margin-top: -60px;
 	border-radius: 2rem;
 	border: 4px solid var(--second-color);
 	background-color: var(--main-color);
-	color: var(--second-color);
+	color: white;
 	width: 200px;
 	height: 50px;
-	margin-left: 100px;
-	grid-column: 2 / 3;
 }
 
 button.trimite:hover {
 	background-color: var(--second-color);
-	color: var(--main-color);
-}
-
-.center-text a {
-	font-size: 50px;
-	color: var(--main-color);
-	margin-bottom: 60px;
-}
-
-.center-text a:hover {
-	transform: scale(1.2);
 	color: var(--second-color);
+	transform: scale(1.1);
 	transition: .2s linear;
-
+	color: white;
 }
 
-.comanda-img {
+.bxs-phone{
+ color: var(--main-color);
+}
+
+
+
+/*-------------------------- CART ICON ---------------------*/
+.cart-icon {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	background-color: var(--main-color);
+	color: var(--bg-color);
+	border: 3px solid var(--second-color);
+	border-radius: 1rem;
 	padding: 10px;
-	background-color: rgb(134, 34, 34);
-	height: 500px;
-	width: auto;
-	position: absolute;
-	right: 6.5rem;
-	border: 6px solid var(--second-color);
-	box-shadow: 10px 8px 0 0 rgb(134, 34, 34);
-	border-radius: 3rem;
-}
+	cursor: pointer;
+	z-index: 999;
+  }
+  .cart-icon:hover {
+	transform: scale(1.2);
+	transition: .1s linear;
+  }
+  
+  #cart-count {
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: 5px;
+  }
+  
+  .bxs-cart-download {
+	font-size: 20px;
+	color: var(--bg-color);
+  }
 
 
-/*-----------MEDIA QUERRY COMANDA--------------------------*/
 
-@media screen and (max-width: 480px) {
+/*---------------- MEDIA QUERRY SHOPPING CART---------------*/
 
-	.comanda-form {
-		height: auto;
-		margin: 10px;
-		margin-top: 50px;
-		margin-bottom: 50px;
-		text-align: center;
-		font-size: 1em;
-		padding: 15px;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: auto 1fr;
-		grid-row-gap: 10px;
-		box-shadow: none;
+@media (max-width: 480px) {
+	.cart-item{
+		display: block;
+		padding-top: 10px;
+	   }
+
+	   #cart-items{
+		padding-left: 0;
+		text-align: left;		
+	   }
+
+	#shopping-cart {
+		border-left: none;
+	    border-top: 5px solid var(--second-color);
+		padding: 10px;
 	}
+
+	.rows-comanda {
+	  border-left: none;
+	  border-top: 5px solid var(--second-color);
+	  padding: 15px;
+	}
+	
+	.quantity-btn {
+	  margin: 5px;
+	  width: 30px;
+	  font-size: 12px;
+	}
+	
+	.remove-btn {
+	  font-size: 12px;
+	  width: 80px;
+	}
+	
+	.comanda-form {
+	  width: 90%;
+	  margin: 20px auto;
+	  font-size: 1rem;
+	  padding: 20px;
+	  display: block;
+	  border: 7px solid var(--second-color);
+	  border-radius: 2rem;
+	  box-shadow: none;
+	}
+	
 
 	label {
-		padding: 5px;
-		margin-top: 13px;
-		display: block;
-		margin-right: 5px;
-		margin-bottom: 10px;
-		text-align: right;
+	  margin-top: 5px;
 	}
-
+	
 	input[type=text],
 	select,
 	textarea {
-		padding: 5px;
-		margin-bottom: 15px;
-		width: 100%;
-		text-align: center;
-		margin-top: 15px;
-		margin-right: 15px;
-	}
-
-
-	button.trimite {
-		width: 70%;
-		height: 50px;
-		margin-left: 0px;
-	}
-
-	.comanda-img {
-		display: none;
-	}
-
-	select {
-		height: 50px;
+	  width: 100%;
+	  font-size: 1rem;
 	}
 	
-}
-.scroll
-{
-	font: optional;
-color: lavender;	
-}
+	button.trimite {
+	  margin-top: 20px;
+	  width: 150px;
+	  height: 40px;
+	  font-size: 1rem;
+	}
+  }
+
 /*#################################################################################*/
 /*#################################################################################*/
 /*#################################################################################*/
@@ -1829,3 +1873,69 @@ iframe
 }
 
 }
+
+
+
+
+
+
+
+/*Despre 2*/
+
+.main-pizza {
+	margin: 5px;
+	padding: 5px;
+	text-align: center;
+	border: 3px solid green;
+  }
+
+
+.main-pizza img{
+	
+	max-height: 700px;
+	width: auto;
+	position: relative;
+}
+
+
+.ing1 img{
+	
+	height: 100px;
+	top: 500px;
+	filter: drop-shadow(0 .5px 1px #000000);
+	position: absolute;
+    top: 220;
+}
+.ing2 img{
+	position: absolute;
+	height: 100px;
+	top: 650px;
+	left: 200px;
+	filter: drop-shadow(0 .5px 1px #000000);
+}
+
+.ing3 img{
+	position: absolute;
+	height: 100px;
+	top: 450px;
+	left: 300px;
+	filter: drop-shadow(0 .5px 1px #000000);
+}
+
+
+.ing1 img:hover, .ing2 img:hover, .ing3 img:hover{
+	transform: scale(1.2) rotate(180deg);
+	transition: .5s linear;
+	
+}
+
+
+.accordion{
+	margin: 0 auto;
+	padding: 20px;
+	width: 50%;
+}
+
+
+
+/*-----------CARUSEL DESPRE----------------*/
