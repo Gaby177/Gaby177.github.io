@@ -1,5 +1,5 @@
 
-/*------------------Scroll Reveal-------------------------*/
+/*------------------Scroll Reveal-------------------------
 ScrollReveal({
   origin: 'top',
   distance: '50px',
@@ -19,7 +19,7 @@ ScrollReveal().reveal('.menu-content',{delay:400, origin: 'bottom'});
 
 ScrollReveal().reveal('.despre',{delay:400, origin: 'bottom'});
 
-ScrollReveal().reveal('.subscribe',{delay:400, origin: 'bottom'});
+ScrollReveal().reveal('.subscribe',{delay:400, origin: 'bottom'});*/
 
 
 
@@ -50,63 +50,22 @@ darkmode.onclick = () => {
 /*------------------Slidere Menu-------------------------*/
 let left = document.getElementsByClassName('bxs-left-arrow');
 let right = document.getElementsByClassName('bxs-right-arrow');
-let cards = document.getElementsByClassName('cards')[2];
-
-
-function scrollToCardLeft() {
-   cards.scrollLeft -= 350;
-  }
-
-function scrollToCardRight() {
-   cards.scrollLeft += 350;
-  }
-
-let left2 = document.getElementsByClassName('bxs-left-arrow');
-let right2 = document.getElementsByClassName('bxs-right-arrow');
+let cards1 = document.getElementsByClassName('cards')[0];
 let cards2 = document.getElementsByClassName('cards')[1];
+let cards3 = document.getElementsByClassName('cards')[2];
 
 
 function scrollToCardLeft() {
-   cards2.scrollLeft -= 350;
+   cards1.scrollLeft -= 450;
+   cards2.scrollLeft -= 450;
+   cards3.scrollLeft -= 450;
   }
 
 function scrollToCardRight() {
-   cards2.scrollLeft += 350;
+   cards1.scrollLeft += 450;
+   cards2.scrollLeft += 450;
+   cards3.scrollLeft += 450;
   }
-
-  let left3 = document.getElementsByClassName('bxs-left-arrow');
-let right3 = document.getElementsByClassName('bxs-right-arrow');
-let cards3 = document.getElementsByClassName('cards')[1];
-
-
-function scrollToCardLeft() {
-   cards3.scrollLeft -= 350;
-  }
-
-function scrollToCardRight() {
-   cards3.scrollLeft += 350;
-  }
-
-
-
-
-/* JS pentru scroll icon dar interfereaza cu modal fix!!!!!
-$(document).ready(function() {
-    $(window).scroll(function() {
-      // Get the current scroll position
-      var scrollTop = $(window).scrollTop();
-      // Get the window height
-      var windowHeight = $(window).height();
-      // Check if the scroll position is less than half of the window height
-      if (scrollTop < windowHeight / 7) {
-        // Hide the element with the class "scroll"
-        $(".scroll").hide();
-      } else {
-        // Show the element if it was previously hidden
-        $(".scroll").show();
-      }
-    });
-  });
 
 /*------------------Pop up pt. sectiunea de newsletter-------------------------*/
   function subscribe() {
@@ -168,205 +127,100 @@ window.onclick = function(e) {
 
 
 
-/*------------------Schimba poza de pizza de la comanda------------------------*/
-const pizzaSelect = document.getElementById('pizza');
-const pizzaImg = document.getElementById('pizza-img');
+/*---------------------- Shopping Cart ---------------------------*/
+var cart = {};
+// Function to add a pizza item to the cart
+function addToCart(button) {
+  var card = button.parentNode;
+  var pizzaName = card.querySelector('h5').textContent;
+  var pizzaPrice = parseFloat(card.querySelector('h4').textContent);
+  var pizzaImageSrc = card.querySelector('img').src;
 
-pizzaSelect.addEventListener('change', function() {
-  const pizzaValue = pizzaSelect.value;
-  const imagePath = `images/${pizzaValue}.png`;
-  pizzaImg.setAttribute('src', imagePath);
-});
-
-
-
-
-/*------------------Calculeaza pretul la comanda------------------------*/
-const pizzaSizeSelect = document.getElementById("size");
-pizzaSizeSelect.addEventListener("change", calculatePrice);
-
-const priceInput = document.getElementById("pret");
-
-const prices = {
-  'pizza-pui': {
-    mini: 21,
-    clasic: 27,
-    party: 75,
-    menuL: 32,
-    menuXL: 37,
-    menuXXL: 42,
-    menuXXXL: 55,
-    menuPasta: 35
-  },
-  'pizza-quattro': {
-    mini: 22,
-    clasic: 28,
-    party: 85,
-    menuL: 32,
-    menuXL: 37,
-    menuXXL: 42,
-    menuXXXL: 52,
-    menuPasta: 42
-  },
-  'pizza-veggy': {
-    mini: 18,
-    clasic: 25,
-    party: 70,
-    menuL: 28,
-    menuXL: 33,
-    menuXXL: 38,
-    menuXXXL: 48,
-    menuPasta: 38
-  },
-  'pizza-casei': {
-    mini: 18,
-    clasic: 26,
-    party: 75,
-    menuL: 28,
-    menuXL: 33,
-    menuXXL: 38,
-    menuXXXL: 48,
-    menuPasta: 38
-  },
-  'pizza-margherita': {
-    mini: 15,
-    clasic: 23,
-    party: 65,
-    menuL: 25,
-    menuXL: 30,
-    menuXXL: 35,
-    menuXXXL: 45,
-    menuPasta: 35
-  },
-  'pizza-peperonni': {
-    mini: 19,
-    clasic: 25,
-    party: 81,
-    menuL: 30,
-    menuXL: 35,
-    menuXXL: 40,
-    menuXXXL: 50,
-    menuPasta: 40
-  },
-  'pizza-carbonara': {
-    mini: 19,
-    clasic: 25,
-    party: 82,
-    menuL: 32,
-    menuXL: 37,
-    menuXXL: 42,
-    menuXXXL: 52,
-    menuPasta: 42
-  },
-  'pizza-carni': {
-    mini: 21,
-    clasic: 27,
-    party: 85,
-    menuL: 35,
-    menuXL: 40,
-    menuXXL: 45,
-    menuXXXL: 55,
-    menuPasta: 45
-  },
-  'pizza-ciuperci': {
-    mini: 20,
-    clasic: 26,
-    party: 78,
-    menuL: 28,
-    menuXL: 33,
-    menuXXL: 38,
-    menuXXXL: 48,
-    menuPasta: 38
-  },
-  'pizza-ton': {
-    mini: 18,
-    clasic: 25,
-    party: 80,
-    menuL: 30,
-    menuXL: 35,
-    menuXXL: 40,
-    menuXXXL: 50,
-    menuPasta: 40
-  },
-  'pizza-cheese': {
-    mini: 19,
-    clasic: 26,
-    party: 83,
-    menuL: 25,
-    menuXL: 30,
-    menuXXL: 35,
-    menuXXXL: 45,
-    menuPasta: 35
-  },
-  'pizza-deliciosa': {
-    mini: 21,
-    clasic: 27,
-    party: 70,
-    menuL: 25,
-    menuXL: 30,
-    menuXXL: 35,
-    menuXXXL: 45,
-    menuPasta: 35
+  if (cart.hasOwnProperty(pizzaName)) {
+    cart[pizzaName].quantity++;
+  } else {
+    cart[pizzaName] = {
+      price: pizzaPrice,
+      quantity: 1,
+      imageSrc: pizzaImageSrc
+    };
   }
 
-
-};
-
-const quantity = document.getElementById('cantitate');
-
-// Define a function to calculate the price based on the selected pizza, size and quantity
-function calculatePrice() {
-const selectedPizza = pizza.value;
-const selectedSize = size.value;
-const quantity = cantitate.value;
-
-const pizzaPrice = prices[selectedPizza][selectedSize];
-const totalPrice = pizzaPrice * quantity;
-
-priceInput.value = totalPrice.toFixed(2) + ' Lei';
+  updateCart();
 }
-// Add an event listener to the pizza and size select elements to recalculate the price on change
-pizza.addEventListener('change', calculatePrice);
-size.addEventListener('change', calculatePrice);
-cantitate.addEventListener('change', calculatePrice);
+// Function to update the cart HTML
+function updateCart() {
+  var cartItems = document.getElementById('cart-items');
+  var totalPrice = 0.0;
 
+  // Clear the cart items
+  cartItems.innerHTML = '';
 
+  // Loop through the cart object and update the HTML
+  for (var pizzaName in cart) {
+    var pizza = cart[pizzaName];
+    var pizzaTotalPrice = pizza.price * pizza.quantity;
+    totalPrice += pizzaTotalPrice;
 
+    var cartItem = document.createElement('div');
+    cartItem.classList.add('cart-item');
+    cartItem.innerHTML = `
+      <img src="${pizza.imageSrc}" alt="Pizza" width="30px">
+      <span>${pizzaName} </span>
+      <button class="quantity-btn" onclick="decreaseQuantity('${pizzaName}')">-</button>
+      <span>x${pizza.quantity}</span>
+      <button class="quantity-btn" onclick="increaseQuantity('${pizzaName}')">+</button>
+      <button class="remove-btn" onclick="removeFromCart('${pizzaName}')">Șterge</button>
+    `;
 
+    cartItems.appendChild(cartItem);
+  }
+  // Update the total price
+  var totalPriceElement = document.getElementById('total-price');
+  totalPriceElement.textContent = totalPrice.toFixed(1);
 
-/*------------------card scroll   merge greu!!!!------------------------*/
+    // Update the cart count
+    var cartCountElement = document.getElementById('cart-count');
+    var cartCount = Object.values(cart).reduce((acc, pizza) => acc + pizza.quantity, 0);
+    cartCountElement.textContent = cartCount;
+    // Toggle visibility of cart icon based on cart count
+  var cartIcon = document.getElementById('cart-icon');
+  if (cartCount > 0) {
+    cartIcon.style.display = 'block';
+  } else {
+    cartIcon.style.display = 'none';
+  }
+}
 
-// Get the container element that holds the cards
-const container = document.querySelector('.cards');
-let isDown = false;
-let startX;
-let scrollLeft;
+// Function to increase the quantity of a pizza item in the cart
+function increaseQuantity(pizzaName) {
+  if (cart.hasOwnProperty(pizzaName)) {
+    cart[pizzaName].quantity++;
+    updateCart();
+  }
+}
 
-// Add event listeners to track mouse movements
-container.addEventListener('mousedown', (e) => {
-  isDown = true;
-  container.classList.add('active');
-  startX = e.pageX - container.offsetLeft;
-  scrollLeft = container.scrollLeft;
-});
+// Function to decrease the quantity of a pizza item in the cart
+function decreaseQuantity(pizzaName) {
+  if (cart.hasOwnProperty(pizzaName)) {
+    if (cart[pizzaName].quantity > 1) {
+      cart[pizzaName].quantity--;
+    } else {
+      delete cart[pizzaName];
+    }
+    updateCart();
+  }
+}
 
-container.addEventListener('mouseleave',() => {
-  isDown = false;
-  container.classList.remove('active');
-})
+// Function to remove a pizza item from the cart
+function removeFromCart(pizzaName) {
+  if (cart.hasOwnProperty(pizzaName)) {
+    delete cart[pizzaName];
+    updateCart();
+  }
+}
 
-container.addEventListener('mouseup', () => {
-  isDown = false;
-  container.classList.remove('active');
-});
-
-container.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - container.offsetLeft;
-  const walk = (x - startX) * 2; // Change the "3" to adjust the scroll speed
-  container.scrollLeft = scrollLeft - walk;
-});
-
+// Initialize the cart
+updateCart();
 
 
