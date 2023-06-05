@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+ background-color: purple;
+  background-repeat: no-repeat; 
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.button {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.message {
+  font-size: 24px;
+  color: #ffffff; /* White */
+  position: absolute;
+  background-color: purple;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+</head>
+<body>
+
+<button class="button" id="button1" onclick="displayMessage('La multi ani Marinela!!!! Sau Mara cum iti place tie :&rpar;&rpar;')">Apasa aici Prima Data!</button>
+<button class="button" id="button2" onclick="displayMessage('Sper sa ai o zi de nastere plina de bucurii si momente frumoase')">Apasa aici a doua oara</button>
+<button class="button" id="button3" onclick="displayMessage('Fie ca Domnul sa iti calauzeasca pasii si toate deciziile tale.')">Apasa aici a treia oara</button>
+<button class="button" id="button4" onclick="displayMessage('La muulti ani vesnici !!!')"> Apasa aici utima data</button>
+<div class="messageContainer">
+  <div id="message" class="message"></div>
+</div>
+
+<script>
+function displayMessage(message) {
+  var messageContainer = document.getElementById("message");
+  messageContainer.innerHTML = message;
+}
+
+// Randomize button positions
+var buttons = document.getElementsByClassName("button");
+for (var i = 0; i < buttons.length; i++) {
+  var button = buttons[i];
+  button.style.top = getRandomNumber(10, 70) + "%";
+  button.style.left = getRandomNumber(10, 70) + "%";
+}
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+</script>
+
+</body>
+</html>
