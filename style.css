@@ -1,0 +1,542 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'DynaPuff', cursive;
+	scroll-behavior: smooth;
+	list-style: none;
+	text-decoration: none;
+}
+
+*::selection
+
+/*culoare selectie mouse*/
+	{
+	background: brown;
+	color: #fff;
+}
+
+:root {
+	--main-color: rgb(0, 0, 0);
+	--second-color: rgb(255, 255, 255);
+	--main-color-dark: rgb(165, 42, 42);
+	--text-color: rgb(255, 255, 255);
+	--bg-color-cards:  rgb(204,99,255),radial-gradient(circle, rgba(204,99,255,1) 0%, rgba(189,0,255,1) 25%, rgba(103,0,255,1) 100%);
+	--big-font: 5rem;
+	--h2-font: 2.2rem;
+	--p-font: 1.2rem;
+}
+
+
+body {
+	background: rgb(204,99,255);
+  background: linear-gradient(130deg, rgba(204,99,255,1) 0%, rgba(189,0,255,1) 25%, rgba(103,0,255,1) 100%);
+}
+
+
+
+@media(max-width: 1220px) {
+	:root {
+		--big-font: 3.6rem;
+		--h2-font: 2rem;
+		--p-font: 0.7rem;
+	}
+}
+
+@media(max-width: 960px) {
+	:root {
+		--big-font: 3rem;
+		--h2-font: 2rem;
+		--p-font: 0.9rem;
+	}
+}
+
+@media(max-width: 480px) {
+	:root {
+		--big-font: 2.7rem;
+		--h2-font: 1.8rem;
+		--p-font: 0.9rem;
+	}
+}
+
+/* -------------------- CENTER TEXT (ALL) -------------------- */
+.center-text {
+	text-align: center;
+	font-size: var(--big-font);
+	padding: 40px;
+}
+
+.center-text strong {
+	font-size: var(--p-font);
+	font-weight: 500;
+	color: orange;
+}
+
+.center-text h2 {
+	font-size: var(--h2-font);
+	font-weight: 900;
+	color: var(--text-color);
+}
+
+
+
+
+/* -------------------- CARDURI -------------------- */
+.cards {
+	width: 90%;
+	height: 200px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	overflow: auto;
+	scroll-behavior: smooth;
+	transition: 1s linear;
+	margin: 0px auto;
+	padding: 0px;
+}
+
+.cards::-webkit-scrollbar {
+	display: none;
+}
+
+.cards .card {
+  height: 600px;
+	position: relative;
+	min-width: 300px;
+	/*min-height: 180px;*/
+	margin-right: 20px;
+	background-color: ff9b2c;
+	color: var(--text-color);
+	border-radius: 50px 10px 10px 10px;
+	border: 3px solid var(--second-color);
+	box-shadow: 7px 4px 0 0 rgba(50, 0, 97, 0.5);
+	overflow: visible;
+}
+
+.cards .card:first-child {
+	margin-left: 30px;
+}
+
+
+.cards .card:hover {
+	
+	transform: translateY(-8px);
+	transition: .2s linear;
+	box-shadow: 10px 9px 0 0  rgba(50, 0, 97, 0.5);
+	color: var(--second-color);
+}
+
+.cards .card:hover h4 {
+	color: var(--second-color);
+}
+
+.cards .card:hover .dis {
+	transition: 0.25s linear;
+	transform: scale(1.3) translateY(-15px);
+}
+
+.card .dis {
+	width: 100px;
+	position: relative;
+	top: -15px;
+	left: -15px;
+	filter: drop-shadow(0 0 3px black);
+}
+
+.card h4 {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--main-color);
+}
+
+.card h5 {
+	text-align: center;
+	font-size: var(--p-font);
+	display: block;
+	overflow: hidden;
+	margin-top: -30px;
+}
+
+#tab3 .card h5 {
+	margin-top: 0;
+}
+
+.card p {
+	margin-top: -10px;
+	text-align: center;
+	font-size: 10px;
+	font-weight: 500;
+	margin-bottom: 3px;
+}
+
+.top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.top .veg,
+.star {
+	font-size: 15px;
+	margin: 10px;
+	margin-bottom: 5px;
+}
+
+.btns {
+	display: flex;
+	justify-content: center;
+	margin-left: 30px;
+	
+}
+
+.btns i {
+	font-size: 25px;
+	cursor: pointer;
+	transition: .3s linear;
+}
+
+.btns i::selection {
+	display: none;
+}
+
+.btns i:hover {
+	color: rgb(110, 110, 110);
+	transform: scale(1.2);
+}
+
+.buy-btn {
+	margin: 3px auto;
+	width: 100px;
+	background-color: white;
+	border: 2px solid var(--second-color);
+	color: black;
+	border-radius: 2rem;
+}
+
+.buy-btn:hover {
+	background-color: var(--second-color);
+	color: var(--second-color);
+	transform: scale(1.1);
+	transition: .2s linear;
+	color: white;
+}
+
+.card-btns {
+	display: inline-block;
+	text-align: center;
+  padding: 10px;
+}
+
+/* -------------------- MEDIAQUERRY CARDURI -------------------- */
+@media screen and (max-width: 480px) {
+	.cards {
+		height: 220px;
+		margin-top: 20px;
+	}
+
+	.card h4,
+	.card h5 {
+		font-size: x-large;
+	}
+
+	.card p {
+		font-size: 17px;
+		padding: 5px;
+	}
+
+	.card h5 {
+		margin-top: 10px;
+		padding: 20px;
+		padding-bottom: 2px;
+	}
+
+	#tab3 .card h5 {
+		margin-top: 70px;
+	}
+
+	
+
+	.top .veg,
+	.star {
+		font-size: 20px;
+	}
+
+	.cards .card {
+		height: auto;
+		border-radius: 15px;
+		min-width: 280px;
+	}
+
+	.card .dis {
+		display: none;
+	}
+
+	.card button {
+		padding: 5px;
+		font-size: 18px;
+		height: auto;
+		width: 100px;
+	}
+}
+
+
+/* -------------------- TABS CARDURI -------------------- */
+.tab {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: -30px;
+}
+
+.tab .tablinks {
+	width: 125px;
+	font-size: 15px;
+	background-color: var(--text-color);
+	color: var(--bg-color);
+	border-radius: 1.5rem;
+	border: 2px solid var(--bg-color-cards);
+	padding: 10px;
+	margin-left: 9px;
+	background-color: rgb(119, 0, 179);
+	color: var(--second-color);
+	border-color: var(--second-color);
+}
+
+.tab .tablinks:hover {
+	background-color: var(--main-color);
+	color: var(--second-color);
+	transform: scale(1.1);
+	transition: .2s linear;
+}
+
+.tab .tablinks.active {
+	background-color: var(--text-color);
+	color: var(--bg-color);
+	border-color: var(--second-color);
+}
+
+
+
+/* -------------------- MODAL -------------------- */
+.modal-open {
+	margin: 0 auto;
+	width: 100px;
+	background-color: white;
+	border: 2px solid var(--second-color);
+	color: black;
+	border-radius: 2rem;
+}
+
+.modal-open:hover {
+	background-color: var(--second-color);
+	color: var(--second-color);
+	transform: scale(1.1);
+	transition: .2s linear;
+	color: white;
+}
+
+.modal {
+	position: fixed;
+	background: rgba(109, 109, 109, 0.5);
+	backdrop-filter: blur(3px);
+}
+
+.modal-content {
+	background: rgb(204,99,255) !important;
+  background: linear-gradient(130deg, rgba(204,99,255,1) 0%, rgba(189,0,255,1) 25%, rgba(103,0,255,1) 100%) !important;
+	margin-top: 70px;
+	max-width: 1000px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 50px;
+	border-radius: 4rem !important;
+	border: 10px solid rgb(255, 255, 255) !important;
+	box-shadow: 10px 7px 0 0 var(--main-color);
+	color: var(--text-color) !important;
+}
+
+.modal-close {
+	color: rgb(128, 0, 255) ;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+	color: var(--second-color);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal li {
+	list-style: url(images/list-style.png);
+	margin-left: 10px;
+	padding: 0;
+	margin-right: 350px;
+}
+
+.modal-img {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 200px;
+	width: auto;
+	filter: drop-shadow(5px 10px 10px black);
+}
+
+.modal-content h2 {
+	padding: 20px 0px 20px 50px;
+	color: var(--main-color-dark);
+}
+
+.modal-content p {
+	padding: 10px 0px 0px 10px;
+	display: inline-block;
+}
+
+.modal .bxs-star,
+.bx-star,
+.bxs-star-half {
+	color: var(--second-color);
+	padding-left: 4px;
+}
+
+.progress {
+	margin: 0 auto;
+	width: 90%;
+}
+
+/* -------------------- MEDIAQUERRY MODAL & TABS -------------------- */
+@media screen and (max-width: 480px) {
+	.tab .tablinks {
+		width: auto;
+		font-size: 15px;
+		margin-left: 7px;
+	}
+
+	.tab i {
+		display: none;
+	}
+
+	.modal {
+		padding: 10px;
+	}
+
+	.modal-open {
+		width: auto;
+		height: auto;
+		font-size: 23px;
+	}
+
+	.modal-content {
+		margin-top: 50px;
+		height: auto;
+		padding: 15px 20px;
+		font-size: 15px;
+		box-shadow: none;
+	}
+
+	.modal-img {
+		position: absolute;
+		margin-right: 30px;
+		margin-top: 40px;
+		height: auto;
+		width: 200px;
+		filter: drop-shadow(5px 10px 10px black);
+	}
+
+	#tab3 .modal-img {
+		height: 170px;
+		width: auto;
+	}
+
+	.modal-content h2 {
+		margin-top: 0;
+		color: var(--main-color);
+		padding: 5px;
+		text-align: center;
+	}
+
+	.modal-content p {
+		margin-right: 0px;
+	}
+
+	.modal li {
+		margin-right: 0px;
+	}
+
+	.modal ol {
+		margin-left: -25px;
+	}
+
+	.progress {
+		margin-bottom: 20px;
+	}
+}
+
+
+
+
+
+/* -------------------- OTHERS  -------------------- */
+
+.txt{
+
+  color: white;
+  text-align: center;
+  margin: -100px auto;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+
+.hbd{
+  width: 100%;
+}
+
+
+.scrl{
+	margin-top: 5px;
+}
+
+.txt-rotate{
+	color: rgb(185, 123, 255);
+	-webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+
+#secret{
+	top: 5px;
+	left: 39%;
+	position: absolute;
+    color:  rgb(183, 0, 255, .6);
+	font-size: 15px;
+	background: none;
+	border: none;
+}
+
+#secret h1{
+	align-items: center;
+	margin: o auto;
+}
+
+video, source{
+	border-radius: 1rem;
+}
+
+
+input{
+  border-radius: 1rem;
+}
+
+
+.art{
+	border-radius: 1rem;
+	
+}
