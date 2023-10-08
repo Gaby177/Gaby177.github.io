@@ -8,18 +8,10 @@
 	text-decoration: none;
 }
 
-*::selection
-
-/*culoare selectie mouse*/
-	{
-	background: brown;
-	color: #fff;
-}
 
 :root {
 	--main-color: rgb(0, 0, 0);
 	--second-color: rgb(255, 255, 255);
-	--main-color-dark: rgb(165, 42, 42);
 	--text-color: rgb(255, 255, 255);
 	--bg-color-cards:  rgb(204,99,255),radial-gradient(circle, rgba(204,99,255,1) 0%, rgba(189,0,255,1) 25%, rgba(103,0,255,1) 100%);
 	--big-font: 5rem;
@@ -29,10 +21,8 @@
 
 
 body {
-	background: rgb(204,99,255);
-  background: linear-gradient(130deg, rgba(204,99,255,1) 0%, rgba(189,0,255,1) 25%, rgba(103,0,255,1) 100%);
+	background: linear-gradient(130deg, rgba(204,99,255,1) 0%, rgba(189,0,255,1) 25%, rgba(103,0,255,1))!important;
 }
-
 
 
 @media(max-width: 1220px) {
@@ -189,7 +179,7 @@ body {
 .btns {
 	display: flex;
 	justify-content: center;
-	margin-left: 30px;
+	
 	
 }
 
@@ -489,14 +479,16 @@ body {
 
   color: white;
   text-align: center;
-  margin: -100px auto;
+  margin: 120px auto;
   margin-bottom: 10px;
   padding: 20px;
 }
 
 
 .hbd{
-  width: 100%;
+	position: absolute;
+	top: 0;
+    width: 100%;
 }
 
 
@@ -519,6 +511,7 @@ body {
 	font-size: 15px;
 	background: none;
 	border: none;
+	z-index: 999;
 }
 
 #secret h1{
@@ -539,4 +532,9 @@ input{
 .art{
 	border-radius: 1rem;
 	
+}
+
+
+.hbd2{
+	font-size: larger;
 }
